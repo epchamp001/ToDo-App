@@ -56,5 +56,30 @@ func main() {
 		c.JSON(200, todo)
 	})
 
+	// Route to update a Todo_task by ID
+	router.PUT("/todos/:id", func(c *gin.Context) {
+		var todo Todo
+		todoID := c.Param("id")
+
+		result := db.First(&todo, todoID)
+		if result.Error != nil {
+			c.JSON(404, gin.H{"error": "Todo not found"})
+			return
+		}
+
+		var updatedTodo Todo
+		if err := c.ShouldBindJSON(&updatedTodo); err != nil {
+			c.JSON(400, gin.H{"error": "Invalid JSON data"})
+			return
+		}
+
+		// Update the Todo_task in the database
+		todo.Title = updatedTodo.Title
+		todo.Description = updatedTodo.Description
+		db.Save(&todo)
+
+		c.JSON(200, todo)
+	})
+
 	router.Run(":8080")
 }
