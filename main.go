@@ -33,12 +33,27 @@ func main() {
 		c.JSON(200, todo)
 	})
 
+	// Route to get all Todos
 	router.GET("/todos", func(c *gin.Context) {
 		var todos []Todo
 
 		db.Find(&todos)
 
 		c.JSON(200, todos)
+	})
+
+	// Route to get a specific Todo_task by id
+	router.GET("/todos/:id", func(c *gin.Context) {
+		var todo Todo
+		todoID := c.Param("id")
+
+		result := db.First(&todo, todoID)
+		if result.Error != nil {
+			c.JSON(404, gin.H{"error": "Todo not found"})
+			return
+		}
+
+		c.JSON(200, todo)
 	})
 
 	router.Run(":8080")
