@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
@@ -79,6 +80,21 @@ func main() {
 		db.Save(&todo)
 
 		c.JSON(200, todo)
+	})
+
+	// Route to delete a Todo_task by ID
+	router.DELETE("/todos/:id", func(c *gin.Context) {
+		var todo Todo
+		todoID := c.Param("id")
+
+		result := db.First(&todo, todoID)
+		if result.Error != nil {
+			c.JSON(404, gin.H{"error": "Todo not found"})
+			return
+		}
+
+		db.Delete(&todo)
+		c.JSON(200, gin.H{"message": fmt.Sprintf("Todo with ID %s deleted", todoID)})
 	})
 
 	router.Run(":8080")
