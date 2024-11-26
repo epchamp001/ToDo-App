@@ -131,7 +131,7 @@ Use `curl` or any API testing tool (for example, Postman) to interact with the s
 }
 ```
 
-## Зависимости
+## Dependencies
 
 - [Gin Web Framework](https://github.com/gin-gonic/gin ) is an HTTP web framework for Go.
 - [GORM ORM Library](https://gorm.io/) — ORM for working with databases in Go.
