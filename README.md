@@ -1,66 +1,66 @@
 # Todo API
 
-Это простое RESTful API для управления задачами (Todo) на основе фреймворка [Gin](https://github.com/gin-gonic/gin) и ORM [GORM](https://gorm.io/), с использованием базы данных SQLite.
+This is a simple RESTful API for managing tasks (Todo) built with the [Gin](https://github.com/gin-gonic/gin) framework and the ORM [GORM](https://gorm.io/), using SQLite as the database.
 
-## Функциональность
+## Features
 
-- Создание новой задачи
-- Получение списка всех задач
-- Получение задачи по ID
-- Обновление задачи по ID
-- Удаление задачи по ID
+- Create a new task
+- Retrieve a list of all tasks
+- Retrieve a task by ID
+- Update a task by ID
+- Delete a task by ID
 
-## Структура задачи (Todo)
+## Task (Todo) Structure
 
-Задача включает следующие поля:
+A task includes the following fields:
 
-- `ID` (автоинкрементный идентификатор)
-- `Title` (название задачи)
-- `Description` (описание задачи)
-- `CreatedAt` (время создания)
-- `UpdatedAt` (время обновления)
+- `ID` (auto-increment identifier)
+- `Title` (task title)
+- `Description` (task description)
+- `CreatedAt` (creation timestamp)
+- `UpdatedAt` (update timestamp)
 
-## Установка и запуск
+## Installation and Launch
 
-### Предварительные требования
+### Prerequisites
 
-- Установленный [Go](https://golang.org/dl/)
+- Installed [Go](https://golang.org/dl/)
 
-### Шаги установки
+### Installation Steps
 
-1. Клонируйте репозиторий:
+1. Clone the repository:
 
    ```bash
    git clone https://github.com/ваше_имя_пользователя/todo-api.git
    cd todo-api
    ```
-2. Установите зависимости (Gin и GORM):
+2. Install dependencies (Gin and GORM):
     ```bash
     go mod tidy
     ```
-3. Запустите сервер:
+3. Start the server:
     ```bash
     go run main.go
     ```
 
 
-Сервер запустится на порту `8080`. Чтобы изменить порт, отредактируйте строку в `main.go`:
-   
+The server will start on port '8080'. To change the port, edit the line in `main.go`:
  ```bash
     router.Run(":8080")
 ```
 
-## Примеры использования API
-Используйте `curl` или любой инструмент для тестирования API (например, Postman) для взаимодействия с сервером.
+## API usage Examples
+Use `curl` or any API testing tool (for example, Postman) to interact with the server.
 
-### Создание новой задачи
-**Запрос:**
+### Creating a new task
+**Request:**
+
 ```bash
   curl -X POST http://localhost:8080/todos \
   -H "Content-Type: application/json" \
   -d '{"title": "My First Todo", "description": "This is a test todo"}'
 ```
-**Ответ:**
+**Response:**
 ```json
 {
   "ID": 1,
@@ -70,12 +70,12 @@
   "UpdatedAt": "2023-10-01T12:00:00Z"
 }
 ```
-### Получение списка всех задач
-**Запрос:**
+### Getting a list of all tasks
+**Request:**
 ```bash
   curl -X GET http://localhost:8080/todos
 ```
-**Ответ:**
+**Response:**
 ```json
 [
   {
@@ -87,12 +87,12 @@
   }
 ]
 ```
-### Получение задачи по ID
-**Запрос:**
+### Getting a task by ID
+**Request:**
 ```bash
   curl -X GET http://localhost:8080/todos/1
 ```
-**Ответ:**
+**Response:**
 ```json
 {
   "ID": 1,
@@ -102,14 +102,14 @@
   "UpdatedAt": "2023-10-01T12:00:00Z"
 }
 ```
-### Обновление задачи по ID
-**Запрос:**
+### Updating the task by ID
+**Request:**
 ```bash
   curl -X PUT http://localhost:8080/todos/1 \
   -H "Content-Type: application/json" \
   -d '{"title": "Updated Title", "description": "Updated description"}'
 ```
-**Ответ:**
+**Response:**
 ```json
 {
   "ID": 1,
@@ -119,12 +119,12 @@
   "UpdatedAt": "2023-10-01T12:30:00Z"
 }
 ```
-### Удаление задачи по ID
-**Запрос:**
+### Deleting a task by ID
+**Request:**
 ```bash
  curl -X DELETE http://localhost:8080/todos/1
 ```
-**Ответ:**
+**Response:**
 ```json
 {
   "message": "Todo with ID 1 deleted"
@@ -133,9 +133,9 @@
 
 ## Зависимости
 
-- [Gin Web Framework](https://github.com/gin-gonic/gin) — HTTP веб-фреймворк для Go.
-- [GORM ORM Library](https://gorm.io/) — ORM для работы с базами данных в Go.
-- SQLite — легковесная реляционная база данных.
+- [Gin Web Framework](https://github.com/gin-gonic/gin ) is an HTTP web framework for Go.
+- [GORM ORM Library](https://gorm.io/) — ORM for working with databases in Go.
+- SQLite is a lightweight relational database.
 
 
  
